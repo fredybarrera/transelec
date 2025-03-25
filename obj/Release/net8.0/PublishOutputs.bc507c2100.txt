@@ -1,7 +1,0 @@
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\Transelec.exe
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\appsettings.json
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\Transelec.dll
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\Transelec.deps.json
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\Transelec.runtimeconfig.json
-C:\Users\fredy\OneDrive\Documentos\Esri\Transelec\Transelec\obj\Release\net8.0\PubTmp\Out\Transelec.pdb
