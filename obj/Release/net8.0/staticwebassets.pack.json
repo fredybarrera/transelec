@@ -1,0 +1,385 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\Transelec.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Transelec.3366mcik2w.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome.css",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.eot"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.svg"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.woff"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\fontawesome\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\ionicons.css",
+      "PackagePath": "staticwebassets\\fonts\\ionicons.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\ionicons\\ionicons.eot",
+      "PackagePath": "staticwebassets\\fonts\\ionicons\\ionicons.eot"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\ionicons\\ionicons.svg",
+      "PackagePath": "staticwebassets\\fonts\\ionicons\\ionicons.svg"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\ionicons\\ionicons.ttf",
+      "PackagePath": "staticwebassets\\fonts\\ionicons\\ionicons.ttf"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\ionicons\\ionicons.woff",
+      "PackagePath": "staticwebassets\\fonts\\ionicons\\ionicons.woff"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\ionicons\\ionicons.woff2",
+      "PackagePath": "staticwebassets\\fonts\\ionicons\\ionicons.woff2"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\linearicons.css",
+      "PackagePath": "staticwebassets\\fonts\\linearicons.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\linearicons\\Linearicons-Free.eot",
+      "PackagePath": "staticwebassets\\fonts\\linearicons\\Linearicons-Free.eot"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\linearicons\\Linearicons-Free.svg",
+      "PackagePath": "staticwebassets\\fonts\\linearicons\\Linearicons-Free.svg"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\linearicons\\Linearicons-Free.ttf",
+      "PackagePath": "staticwebassets\\fonts\\linearicons\\Linearicons-Free.ttf"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\linearicons\\Linearicons-Free.woff",
+      "PackagePath": "staticwebassets\\fonts\\linearicons\\Linearicons-Free.woff"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\fonts\\linearicons\\Linearicons-Free.woff2",
+      "PackagePath": "staticwebassets\\fonts\\linearicons\\Linearicons-Free.woff2"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\img\\1718922545.png",
+      "PackagePath": "staticwebassets\\img\\1718922545.png"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\fredy\\OneDrive\\Documentos\\Esri\\Transelec\\Transelec\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.Transelec.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.Transelec.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.Transelec.props",
+      "PackagePath": "build\\Transelec.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Transelec.props",
+      "PackagePath": "buildMultiTargeting\\Transelec.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.Transelec.props",
+      "PackagePath": "buildTransitive\\Transelec.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

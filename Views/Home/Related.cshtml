@@ -1,0 +1,74 @@
+﻿@model List<Dictionary<string, object>>
+
+@{
+    ViewData["Title"] = $"Registros Relacionados OM {ViewBag.Om}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card">
+    <div class="card-body">
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table id="recordsTable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            @foreach (var key in Model.First().Keys)
+                            {
+                                <th>@key</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var record in Model)
+                        {
+                            <tr>
+                                @foreach (var value in record.Values)
+                                {
+                                    <td>@(value ?? "N/A")</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No se encontraron registros relacionados.</p>
+        }
+        
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#recordsTable').DataTable({
+                "paging": true,         // Agrega paginación
+                "scrollX": true,        // Desplazamiento horizontal si es necesario
+                "autoWidth": false,     // Evita problemas de ancho
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron registros",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

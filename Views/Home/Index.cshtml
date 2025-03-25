@@ -1,0 +1,84 @@
+﻿@model List<Dictionary<string, object>>
+
+@{
+    ViewData["Title"] = "Listado de OM";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="recordsTableIndex" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Object ID</th>
+                        @* <th>uniquerowid</th>
+                        <th>Global ID</th> *@
+                        <th>OM</th>
+                        <th>Actividad</th>
+                        <th>Instalación</th>
+                        <th>Responsable</th>
+                        <th>Jefe faena</th>
+                        @* <th>Organización</th> *@
+                        <th>Zona</th>
+                        <th>Tipo de Trabajo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item["objectid"]</td>
+                         @*    <td>@item["uniquerowid"]</td>
+                            <td>@item["globalid"]</td> *@
+                            <td>@item["om_text"]</td>
+                            <td>@item["actividad"]</td>
+                            <td>@item["instalac"]</td>
+                            <td>@item["responsable"]</td>
+                            <td>@item["jefe_faen"]</td>
+                            @* <td>@item["organizac"]</td> *@
+                            <td>@item["zona_name"]</td>
+                            <td>@item["tipo_trabaj"]</td>
+                            <td>
+                                @* <a class="btn btn-primary btn-sm" target="_blank" asp-action="Related" asp-route-om="@item["om_text"]" asp-route-objectId="@item["objectid"]"><em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver datos</a> *@
+                                <a class="btn btn-primary btn-sm" target="_blank" asp-action="GetOm" asp-route-om="@item["om_text"]" ><em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver OM</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#recordsTableIndex').DataTable({
+                "paging": true,         // Agrega paginación
+                "scrollX": true,        // Desplazamiento horizontal si es necesario
+                "autoWidth": false,     // Evita problemas de ancho
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron registros",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
