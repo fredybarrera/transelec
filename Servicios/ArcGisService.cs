@@ -1,4 +1,8 @@
-﻿using System.Text.Json;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Win32;
+using System;
+using System.Text;
+using System.Text.Json;
 using Transelec.Models;
 
 namespace Transelec.Servicios
@@ -7,6 +11,10 @@ namespace Transelec.Servicios
     {
         private readonly HttpClient _httpClient = httpClient;
         private readonly IConfiguration _configuration = configuration;
+        private const int _aceptar = 1;
+        private const int _rechazar = 2;
+        private const int _estadoEnviarSap = 2;
+
 
         public async Task<string> GetTokenAsync()
         {
@@ -145,45 +153,68 @@ namespace Transelec.Servicios
         }
 
 
-        //public async Task<List<Dictionary<string, object>>> GetRelatedRecordsAsync(
-        //    string layerUrl, 
-        //    string objectId,
-        //    string relationshipId)
-        //{
-        //    string token = await GetTokenAsync();
 
-        //    var queryParams = new Dictionary<string, string>
-        //    {
-        //        { "objectIds", objectId },
-        //        { "relationshipId", relationshipId },  // Asegúrate de usar el ID correcto de relación
-        //        { "outFields", "*" },
-        //        { "f", "json" },
-        //        { "token", token }
-        //    };
+        public async Task<bool> AprobarOm(string layerUrl, int objectId)
+        {
+            string token = await GetTokenAsync();
 
-        //    string queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-        //    var response = await _httpClient.GetAsync($"{layerUrl}?{queryString}");
+            Object objTmp = new
+            {
+                attributes = new
+                {
+                    objectid = objectId,
+                    aceptar = _aceptar,
+                    estado = _estadoEnviarSap,
+                }
+            };
 
-        //    if (!response.IsSuccessStatusCode)
-        //        throw new Exception("Error al obtener los registros relacionados");
+            string registro = JsonSerializer.Serialize(objTmp);
 
-        //    string responseString = await response.Content.ReadAsStringAsync();
-        //    var relatedResponse = JsonSerializer.Deserialize<RelatedRecordsResponse>(responseString, new JsonSerializerOptions
-        //    {
-        //        PropertyNameCaseInsensitive = true
-        //    });
+            var values = new Dictionary<string, string> {
+                            { "updates" , "["+registro+"]" },
+                            { "token", token},
+                            { "f", "pjson"}
+                        };
 
-        //    var relatedValues = new List<Dictionary<string, object>>();
+            var content = new FormUrlEncodedContent(values);
+            
+            string Url = $"{layerUrl}/applyEdits";
+            var response = await _httpClient.PostAsync(Url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\" : true");
+            return res;
+        }
 
-        //    foreach (var group in relatedResponse?.RelatedRecordGroups ?? [])
-        //    {
-        //        foreach (var record in group.RelatedRecords)
-        //        {
-        //            relatedValues.Add(record.Attributes);
-        //        }
-        //    }
+        public async Task<bool> RechazarOm(string layerUrl, int objectId, string observacion)
+        {
+            string token = await GetTokenAsync();
 
-        //    return relatedValues;
-        //}
+            Object objTmp = new
+            {
+                attributes = new
+                {
+                    objectid = objectId,
+                    aceptar = _rechazar,
+                    estado = _estadoEnviarSap,
+                    obs_activ = observacion
+                }
+            };
+
+            string registro = JsonSerializer.Serialize(objTmp);
+
+            var values = new Dictionary<string, string> {
+                            { "updates" , "["+registro+"]" },
+                            { "token", token},
+                            { "f", "pjson"}
+                        };
+
+            var content = new FormUrlEncodedContent(values);
+
+            string Url = $"{layerUrl}/applyEdits";
+            var response = await _httpClient.PostAsync(Url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\" : true");
+            return res;
+        }
     }
 }

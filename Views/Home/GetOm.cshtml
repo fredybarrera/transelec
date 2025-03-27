@@ -27,6 +27,9 @@
                                 <th>Organización</th>
                                 <th>Jefe faena</th>
                                 <th>Jefe de actividad</th>
+@*                                 <th>Aceptar</th>
+                                <th>Estado</th>
+                                <th>Observación</th> *@
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +50,9 @@
                                     <td>@item["organizac"]</td>
                                     <td>@item["jefe_faen"]</td>
                                     <td>@item["jefe_act"]</td>
+@*                                     <td>@item["aceptar"]</td>
+                                    <td>@item["estado"]</td>
+                                    <td>@item["obs_activ"]</td> *@
                                 </tr>
                             }
                         </tbody>
@@ -55,9 +61,33 @@
             </div>
             <div class="card-footer">
                 <div class="form-group mt-2 mb-2" style="float: right;">
-                    <button type="submit" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; Rechazar</button>
-                    <button type="submit" class="btn btn-success"><em class="ion ion-ios-checkmark-circle"></em>&nbsp; Aprobar</button>
+                    <button type="button" id="btn-rechazar-om" data-objectid="@ViewBag.Objectid" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; Rechazar</button>
+                    <button type="button" onclick="aprobarOm('@ViewBag.Objectid')" class="btn btn-success"><em class="ion ion-ios-checkmark-circle"></em>&nbsp; Aprobar</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-rechazar" tabindex="-1" aria-labelledby="modal-liberarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rechazar OM</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Observación<span class="requerido">*</span></label>
+                    <textarea class="form-control" id="Observacion" maxlength="124"></textarea>
+                    <input type="hidden" id="Objectid" />
+                </div>
+                <div id="statusMessage" class="mt-2"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="rechazarOm()">Guardar</button>
             </div>
         </div>
     </div>

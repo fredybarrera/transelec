@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="~/fonts/fontawesome.css">
     <link rel="stylesheet" href="~/fonts/ionicons.css">
     <link rel="stylesheet" href="~/fonts/linearicons.css">
+
+    <link rel="stylesheet" href="~/lib/toastr/css/toastr.min.css" />
+
 </head>
 <body>
     @* 
@@ -51,6 +54,14 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/toastr/js/toastr.min.js"></script>
+    <script src="~/js/Mantencion.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(function() {
+            console.log("jQuery está funcionando correctamente.");
+        });
+    </script>
 </body>
 </html>

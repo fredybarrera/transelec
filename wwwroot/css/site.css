@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.requerido{
+    color: red;
+    font-weight: 900;
+    margin-left: 7px;
+}

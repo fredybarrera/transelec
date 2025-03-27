@@ -42,8 +42,7 @@
                             <td>@item["zona_name"]</td>
                             <td>@item["tipo_trabaj"]</td>
                             <td>
-                                @* <a class="btn btn-primary btn-sm" target="_blank" asp-action="Related" asp-route-om="@item["om_text"]" asp-route-objectId="@item["objectid"]"><em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver datos</a> *@
-                                <a class="btn btn-primary btn-sm" target="_blank" asp-action="GetOm" asp-route-om="@item["om_text"]" ><em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver OM</a>
+                                <a class="btn btn-primary btn-sm" target="_blank" asp-action="GetOm" asp-route-om="@item["om_text"]" asp-route-objectid="@item["objectid"]"><em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver OM</a>
                             </td>
                         </tr>
                     }
