@@ -170,18 +170,19 @@ namespace Transelec.Servicios
 
             string registro = JsonSerializer.Serialize(objTmp);
 
-            var values = new Dictionary<string, string> {
-                            { "updates" , "["+registro+"]" },
-                            { "token", token},
-                            { "f", "pjson"}
-                        };
+            var values = new Dictionary<string, string>
+            {
+                ["updates"] = $"[{registro}]",
+                ["token"] = token,
+                ["f"] = "json"
+            };
 
             var content = new FormUrlEncodedContent(values);
             
             string Url = $"{layerUrl}/applyEdits";
             var response = await _httpClient.PostAsync(Url, content);
             var responseString = await response.Content.ReadAsStringAsync();
-            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\" : true");
+            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\":true");
             return res;
         }
 
@@ -202,11 +203,12 @@ namespace Transelec.Servicios
 
             string registro = JsonSerializer.Serialize(objTmp);
 
-            var values = new Dictionary<string, string> {
-                            { "updates" , "["+registro+"]" },
-                            { "token", token},
-                            { "f", "pjson"}
-                        };
+            var values = new Dictionary<string, string>
+            {
+                ["updates"] = $"[{registro}]",
+                ["token"] = token,
+                ["f"] = "json"
+            };
 
             var content = new FormUrlEncodedContent(values);
 
