@@ -4,7 +4,7 @@
     ViewData["Title"] = $"Registros Relacionados OM {ViewBag.Om}";
 
     var aliasCampos = ViewBag.AliasCampos as Dictionary<string, string>;
-    var imagenesPorObjeto = ViewBag.Imagenes as Dictionary<int, List<string>>;
+    var imagenesPorObjeto = ViewBag.Imagenes as List<ArcGisAttachmentViewModel>;
 
     int i = 0, x = 0, y = 0, z = 0;
     string? fase = "", observacion = "", equipoFormat = "";
@@ -133,6 +133,7 @@
                                                                                 string alias = aliasCampos != null && aliasCampos.ContainsKey(v.Key) ? aliasCampos[v.Key] : "No encontrado";
                                                                                 string numero = v.Key[^2..];
                                                                                 string keyObs = $"observac{numero}";
+                                                                                string keyImg = $"nota_img{numero}";
 
                                                                                 if (record.TryGetValue(keyObs, out object? valorObs))
                                                                                 {
@@ -153,10 +154,9 @@
                                                                                                 {
                                                                                                     @foreach (var entry in imagenesPorObjeto)
                                                                                                     {
-                                                                                                        @foreach (var url in entry.Value)
+                                                                                                        if (entry.Keyword == keyImg)
                                                                                                         {
-                                                                                                            <img src="@url" alt="Imagen adjunta" style="width:200px; height:auto; margin:5px;" />
-                                                                                                            @* <img src="/img/1718922545.png" style="width: 389px" /> *@
+                                                                                                            <img src="@entry.ImageUrl" alt="Imagen adjunta" style="width:200px; height:auto; margin:5px;" />
                                                                                                         }
                                                                                                     }
                                                                                                 }

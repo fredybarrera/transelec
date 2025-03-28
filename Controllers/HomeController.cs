@@ -40,8 +40,10 @@ namespace Transelec.Controllers
             .Select(id => id!.Value)
             .ToList();
 
-            Dictionary<int, List<string>> imagenesPorObjeto = await _arcGisService.ObtenerUrlsAdjuntos(_layerUrl1, objectIds);
-            ViewBag.Imagenes = imagenesPorObjeto; // Pasamos la info a la vista
+            List<ArcGisAttachmentViewModel> attachments = await _arcGisService.ObtenerDatosAdjuntos(_layerUrl1, objectIds);
+
+            //Dictionary<int, List<string>> imagenesPorObjeto = await _arcGisService.ObtenerDatosAdjuntos(_layerUrl1, objectIds);
+            ViewBag.Imagenes = attachments; // Pasamos la info a la vista
 
             Dictionary<string, string> fieldAliases = await _arcGisService.ObtenerAliasCampos(_layerUrl1);
             ViewBag.AliasCampos = fieldAliases;

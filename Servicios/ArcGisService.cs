@@ -246,7 +246,7 @@ namespace Transelec.Servicios
             return aliases;
         }
 
-        public async Task<Dictionary<int, List<string>>> ObtenerUrlsAdjuntos(string featureServerUrl, List<int> objectIds)
+        public async Task<Dictionary<int, List<string>>> ObtenerUrlsAdjuntosOLD(string featureServerUrl, List<int> objectIds)
         {
             Dictionary<int, List<string>> imagenesPorObjeto = [];
 
@@ -279,6 +279,70 @@ namespace Transelec.Servicios
             }
 
             return imagenesPorObjeto;
+        }
+
+        public async Task<List<ArcGisAttachmentViewModel>> ObtenerDatosAdjuntos(string featureServerUrl, List<int> objectIds)
+        {
+            List<ArcGisAttachmentViewModel> result = [];
+            string token = await GetTokenAsync();
+            string keywords = "Desconocido"; // Valor por defecto si no existe
+
+            foreach (int objectId in objectIds)
+            {
+                // Obtener adjuntos
+                string queryAttachmentsUrl = $"{featureServerUrl}/queryAttachments?objectIds={objectId}&f=json&token={token}";
+                using HttpClient client = new();
+                string jsonAttachments = await client.GetStringAsync(queryAttachmentsUrl);
+                using JsonDocument docAttachments = JsonDocument.Parse(jsonAttachments);
+                JsonElement rootAttachments = docAttachments.RootElement;
+
+                List<string> imageUrls = new();
+                if (rootAttachments.TryGetProperty("attachmentGroups", out JsonElement attachmentGroups))
+                {
+                    foreach (JsonElement group in attachmentGroups.EnumerateArray())
+                    {
+                        if (group.TryGetProperty("attachmentInfos", out JsonElement attachmentInfos))
+                        {
+                            foreach (JsonElement attachment in attachmentInfos.EnumerateArray())
+                            {
+                                int attachmentId = attachment.GetProperty("id").GetInt32();
+                                keywords = attachment.GetProperty("keywords").ToString();
+                                string imageUrl = $"{featureServerUrl}/{objectId}/attachments/{attachmentId}?token={token}";
+                                imageUrls.Add(imageUrl);
+                            }
+                        }
+                    }
+                }
+
+                //// Obtener Keyword desde los atributos del objeto
+                //string queryFeatureUrl = $"{featureServerUrl}/query?where=OBJECTID={objectId}&outFields=Keyword&f=json";
+                //string jsonFeature = await client.GetStringAsync(queryFeatureUrl);
+                //using JsonDocument docFeature = JsonDocument.Parse(jsonFeature);
+                //JsonElement rootFeature = docFeature.RootElement;
+
+                //if (rootFeature.TryGetProperty("features", out JsonElement features) && features.GetArrayLength() > 0)
+                //{
+                //    JsonElement firstFeature = features[0];
+                //    if (firstFeature.TryGetProperty("attributes", out JsonElement attributes) &&
+                //        attributes.TryGetProperty("Keyword", out JsonElement keywordElement))
+                //    {
+                //        keyword = keywordElement.GetString();
+                //    }
+                //}
+
+                // Guardar la información en la lista de resultados
+                foreach (var url in imageUrls)
+                {
+                    result.Add(new ArcGisAttachmentViewModel
+                    {
+                        ObjectId = objectId,
+                        ImageUrl = url,
+                        Keyword = keywords
+                    });
+                }
+            }
+
+            return result;
         }
     }
 }
