@@ -2,10 +2,205 @@
 
 @{
     ViewData["Title"] = $"Registros Relacionados OM {ViewBag.Om}";
+
+    var aliasCampos = ViewBag.AliasCampos as Dictionary<string, string>;
+    var imagenesPorObjeto = ViewBag.Imagenes as Dictionary<int, List<string>>;
+
+    int i = 0, x = 0, y = 0, z = 0;
+    string? fase = "", observacion = "", equipoFormat = "";
 }
 
-<h2>@ViewData["Title"]</h2>
+<div class="card mt-3">
+    <div class="card-body">
+        @if (Model != null && Model.Any())
+        {
+            <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
+                    @foreach (var record in Model)
+                    {
+                        @foreach (var key in record.Keys)
+                        {
+                            if (key == "activ_id01")
+                            {
+                                if (record.TryGetValue(key, out object? valorEquipo))
+                                {
+                                    string? equipo = valorEquipo as string;
+                                    if (equipo != null)
+                                    {
+                                        i++;
+                                        <button 
+                                        class="nav-link @(i == 1 ? "active":"")" 
+                                        id="v-pills-@i-tab" 
+                                        data-bs-toggle="pill" 
+                                        data-bs-target="#v-pills-@i" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="v-pills-@i" 
+                                        aria-selected="true"
+                                        style="text-align: left;">
+                                            @equipo
+                                        </button>
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                </div>
+                <div class="tab-content col-lg-11" id="v-pills-tabContent">
+                    @foreach (var record in Model)
+                    {
+                        @foreach (var key in record.Keys)
+                        {
+                            if (key == "activ_id01")
+                            {
+                                if (record.TryGetValue(key, out object? valorEquipo))
+                                {
+                                    string? equipo = valorEquipo as string;
+                                    equipoFormat = equipo?.Replace(" ", "_").ToLower();
+                                    if (equipo != null)
+                                    {
+                                        if (record.TryGetValue("fase_id01", out object? valorFase))
+                                        {
+                                            fase = valorFase as string;
+                                        }
+                                        x++;
+                                        <div class="tab-pane fade @(x == 1 ? "show active":"")" id="v-pills-@x" role="tabpanel" aria-labelledby="v-pills-@x-tab">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    @equipo - @fase
+                                                </div>
+                                                <div class="card-body">
+                                                    <nav>
+                                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                            @foreach (var data in Model)
+                                                            {
+                                                                y = 0;
+                                                                if (data.TryGetValue("activ_id01", out object? ValequipoAux))
+                                                                {
+                                                                    string? equipoAux = ValequipoAux as string;
+
+                                                                    if (equipoAux == equipo)
+                                                                    {
+                                                                        @foreach (var v in data)
+                                                                        {
+                                                                            if (v.Key.Contains("g1itm"))
+                                                                            {
+                                                                                if (v.Value != null && v.Value.ToString() == "2")
+                                                                                {
+                                                                                    y++;
+                                                                                    string alias = aliasCampos != null && aliasCampos.ContainsKey(v.Key) ? aliasCampos[v.Key] : "No encontrado";
+
+                                                                                    <button 
+                                                                                    class="nav-link @(y == 1 ? "active":"")" 
+                                                                                    id="nav-@equipoFormat-@v.Key-@y-tab" 
+                                                                                    data-bs-toggle="tab" 
+                                                                                    data-bs-target="#nav-@equipoFormat-@v.Key-@y" 
+                                                                                    type="button" 
+                                                                                    role="tab" 
+                                                                                    aria-controls="nav-contact" 
+                                                                                    aria-selected="false"> 
+                                                                                        @alias
+                                                                                    </button>
+
+                                                                                    @* <p>Key: @v.Key - Alias: @alias - Value: @v.Value</p> *@
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </nav>
+                                                    <div class="tab-content" id="nav-tabContent">
+                                                        @foreach (var data in Model)
+                                                        {
+                                                            z = 0;
+                                                            if (data.TryGetValue("activ_id01", out object? ValequipoAux))
+                                                            {
+                                                                string? equipoAux = ValequipoAux as string;
+
+                                                                if (equipoAux == equipo)
+                                                                {
+                                                                    @foreach (var v in data)
+                                                                    {
+                                                                        if (v.Key.Contains("g1itm"))
+                                                                        {
+                                                                            if (v.Value != null && v.Value.ToString() == "2")
+                                                                            {
+                                                                                z++;
+                                                                                string alias = aliasCampos != null && aliasCampos.ContainsKey(v.Key) ? aliasCampos[v.Key] : "No encontrado";
+                                                                                string numero = v.Key[^2..];
+                                                                                string keyObs = $"observac{numero}";
+
+                                                                                if (record.TryGetValue(keyObs, out object? valorObs))
+                                                                                {
+                                                                                    observacion = valorObs as string;
+                                                                                }
+
+                                                                                <div 
+                                                                                    class="tab-pane fade @(z == 1 ? "show active":"")" 
+                                                                                    id="nav-@equipoFormat-@v.Key-@z" 
+                                                                                    role="tabpanel" 
+                                                                                    aria-labelledby="nav-@equipoFormat-@v.Key-@z-tab">
+
+                                                                                    <div class="card-body">
+                                                                                        <form>
+                                                                                            <div class="form-group">
+
+                                                                                                @if (imagenesPorObjeto != null && imagenesPorObjeto.Any())
+                                                                                                {
+                                                                                                    @foreach (var entry in imagenesPorObjeto)
+                                                                                                    {
+                                                                                                        @foreach (var url in entry.Value)
+                                                                                                        {
+                                                                                                            <img src="@url" alt="Imagen adjunta" style="width:200px; height:auto; margin:5px;" />
+                                                                                                            @* <img src="/img/1718922545.png" style="width: 389px" /> *@
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            </div>
+                                                                                            <div class="form-group mt-4">
+                                                                                                <label class="form-label">Observación</label>
+                                                                                                <textarea class="form-control" rows="4" cols="3" readonly>@observacion</textarea>
+                                                                                            </div>
+                                                                                            <div class="form-group mt-4">
+                                                                                                <button id="btn-guardar-inspection-torre" type="submit" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; Rechazar</button>
+                                                                                                <button id="btn-guardar-inspection-torre" type="submit" class="btn btn-success"><em class="ion ion-ios-checkmark-circle"></em>&nbsp; Aprobar</button>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @* <p>Key: @v.Key - Alias: @alias - Value: @v.Value</p> *@
+                                                                            }
+                                                                        }
+                                                                    }
+
+                                                                }
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <p>No se encontraron registros relacionados.</p>
+        }
+    </div>
+</div>
+
+@* 
 <div class="card">
     <div class="card-body">
 
@@ -41,7 +236,7 @@
         }
         
     </div>
-</div>
+</div> *@
 
 @section Scripts {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">

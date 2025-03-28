@@ -218,5 +218,67 @@ namespace Transelec.Servicios
             var res = response.IsSuccessStatusCode && responseString.Contains("\"success\" : true");
             return res;
         }
+
+
+        public async Task<Dictionary<string, string>> ObtenerAliasCampos(string layerUrl)
+        {
+            string token = await GetTokenAsync();
+            string Url = $"{layerUrl}?f=json&token={token}";
+            using HttpClient client = new();
+            string json = await client.GetStringAsync(Url);
+
+            using JsonDocument doc = JsonDocument.Parse(json);
+            JsonElement root = doc.RootElement;
+
+            Dictionary<string, string> aliases = [];
+
+            if (root.TryGetProperty("fields", out JsonElement fields))
+            {
+                foreach (JsonElement field in fields.EnumerateArray())
+                {
+                    string name = field.GetProperty("name").GetString()!;
+                    string alias = field.GetProperty("alias").GetString()!;
+
+                    aliases[name] = alias; // Guardar en el diccionario
+                }
+            }
+
+            return aliases;
+        }
+
+        public async Task<Dictionary<int, List<string>>> ObtenerUrlsAdjuntos(string featureServerUrl, List<int> objectIds)
+        {
+            Dictionary<int, List<string>> imagenesPorObjeto = [];
+
+            foreach (int objectId in objectIds)
+            {
+                string token = await GetTokenAsync();
+                string queryUrl = $"{featureServerUrl}/queryAttachments?objectIds={objectId}&f=json&token={token}";
+                using HttpClient client = new();
+                string json = await client.GetStringAsync(queryUrl);
+                using JsonDocument doc = JsonDocument.Parse(json);
+                JsonElement root = doc.RootElement;
+
+                if (root.TryGetProperty("attachmentGroups", out JsonElement attachmentGroups))
+                {
+                    foreach (JsonElement group in attachmentGroups.EnumerateArray())
+                    {
+                        if (group.TryGetProperty("attachmentInfos", out JsonElement attachmentInfos))
+                        {
+                            List<string> urls = new();
+                            foreach (JsonElement attachment in attachmentInfos.EnumerateArray())
+                            {
+                                int attachmentId = attachment.GetProperty("id").GetInt32();
+                                string imageUrl = $"{featureServerUrl}/{objectId}/attachments/{attachmentId}?token={token}";
+                                urls.Add(imageUrl);
+                            }
+                            imagenesPorObjeto[objectId] = urls;
+                        }
+                    }
+                }
+            }
+
+            return imagenesPorObjeto;
+        }
     }
 }

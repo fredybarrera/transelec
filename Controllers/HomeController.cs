@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Security.Claims;
 using System.Security.Cryptography.Xml;
+using System.Text.Json;
 using Transelec.Models;
 using Transelec.Servicios;
 
@@ -18,6 +19,7 @@ namespace Transelec.Controllers
         private readonly ArcGisService _arcGisService = arcGisService;
         private readonly IConfiguration _configuration = configuration;
         private readonly string _layerUrl = configuration["ArcGIS:Layer0"]!;
+        private readonly string _layerUrl1 = configuration["ArcGIS:Layer1"]!;
 
         public async Task<IActionResult> Index()
         {
@@ -27,12 +29,22 @@ namespace Transelec.Controllers
             return View(featureValues);
         }
 
-        public async Task<IActionResult> Related(string om, string objectId)
+        public async Task<IActionResult> Related(string objectId)
         {
             string layerUrl = $"{_layerUrl}/queryRelatedRecords";
-            ViewBag.Om = om;
-            string relationshipId = "7";
+            string relationshipId = "8";
             var featureValues = await _arcGisService.GetRelatedRecordsAsync(layerUrl, objectId, relationshipId);
+            List<int> objectIds = featureValues
+            .Select(f => f.TryGetValue("objectid", out var value) ? Convert.ToInt32(value) : (int?)null)
+            .Where(id => id.HasValue)
+            .Select(id => id!.Value)
+            .ToList();
+
+            Dictionary<int, List<string>> imagenesPorObjeto = await _arcGisService.ObtenerUrlsAdjuntos(_layerUrl1, objectIds);
+            ViewBag.Imagenes = imagenesPorObjeto; // Pasamos la info a la vista
+
+            Dictionary<string, string> fieldAliases = await _arcGisService.ObtenerAliasCampos(_layerUrl1);
+            ViewBag.AliasCampos = fieldAliases;
             return View(featureValues);
         }
 
@@ -115,7 +127,6 @@ namespace Transelec.Controllers
         {
             return ["*"];
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
