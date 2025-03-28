@@ -8,7 +8,7 @@
     var Oms = ViewBag.Features as List<Dictionary<string, object>>;
 
     int i = 0, x = 0, y = 0, z = 0, objectId = 0;
-    string? fase = "", observacion = "", equipoFormat = "";
+    string? fase = "", observacion = "", equipoFormat = "", criticidad = "";
 }
 
 <div class="card mt-3">
@@ -135,6 +135,7 @@
                                                                                 string numero = v.Key[^2..];
                                                                                 string keyObs = $"observac{numero}";
                                                                                 string keyImg = $"nota_img{numero}";
+                                                                                string keyCri = $"critic{numero}";
 
                                                                                 if (record.TryGetValue("objectid", out object? valorObj))
                                                                                 {
@@ -144,6 +145,11 @@
                                                                                 if (record.TryGetValue(keyObs, out object? valorObs))
                                                                                 {
                                                                                     observacion = valorObs as string;
+                                                                                }
+
+                                                                                if (record.TryGetValue(keyCri, out object? valorCrit))
+                                                                                {
+                                                                                    criticidad = valorCrit as string;
                                                                                 }
 
                                                                                 <div 
@@ -170,6 +176,10 @@
                                                                                             <div class="form-group mt-4">
                                                                                                 <label class="form-label">Observación</label>
                                                                                                 <textarea class="form-control" rows="4" cols="3" readonly>@observacion</textarea>
+                                                                                            </div>
+                                                                                            <div class="form-group mt-4">
+                                                                                                <label class="form-label">Nivel de criticidad</label>
+                                                                                                <input class="form-control" type="text" readonly />
                                                                                             </div>
                                                                                             <div class="form-group mt-4">
                                                                                                 <button id="btn-guardar-inspection-torre" type="button" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; No aceptar</button>
