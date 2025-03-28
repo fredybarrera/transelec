@@ -182,7 +182,7 @@
                                                                                                 <input class="form-control" type="text" readonly />
                                                                                             </div>
                                                                                             <div class="form-group mt-4">
-                                                                                                <button id="btn-guardar-inspection-torre" type="button" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; No aceptar</button>
+                                                                                                <button id="btn-guardar-rechazar-actividad" onclick="rechazarActividad('@objectId', '@numero')" type="button" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; No aceptar</button>
                                                                                                 <button id="btn-guardar-aceptar-actividad" onclick="aceptarActividad('@objectId', '@numero')" type="button" class="btn btn-success"><em class="ion ion-ios-checkmark-circle"></em>&nbsp; Aceptar</button>
                                                                                             </div>
                                                                                         </form>
@@ -191,7 +191,6 @@
                                                                             }
                                                                         }
                                                                     }
-
                                                                 }
                                                             }
                                                         }
@@ -306,6 +305,7 @@
     </div>
 </div>
 
+@* 
 
 <div class="card">
     <div class="card-body">
@@ -343,6 +343,8 @@
         
     </div>
 </div> 
+ *@
+
 
 @section Scripts {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">

@@ -123,6 +123,20 @@ namespace Transelec.Controllers
             return result ? Ok(new { mensaje = $"Actualización existosa" }) : BadRequest(new { mensaje = $"Error en la actualización" });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RechazarActividad([FromBody] OmViewModel data)
+        {
+
+            if (data.ObjectId == 0)
+            {
+                return BadRequest(new { mensaje = "No se recibió el parámetro ObjectId." });
+            }
+
+            var result = await _arcGisService.RechazarActividad(_layerUrl1, data.ObjectId, data.Key!);
+
+            return result ? Ok(new { mensaje = $"Actualización existosa" }) : BadRequest(new { mensaje = $"Error en la actualización" });
+        }
+
         private static List<String> GetOutFields0()
         {
             return [

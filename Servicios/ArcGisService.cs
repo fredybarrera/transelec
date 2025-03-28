@@ -353,5 +353,35 @@ namespace Transelec.Servicios
             var res = response.IsSuccessStatusCode && responseString.Contains("\"success\":true");
             return res;
         }
+
+        public async Task<bool> RechazarActividad(string layerUrl, int objectId, string key)
+        {
+            string token = await GetTokenAsync();
+
+            var attributes = new Dictionary<string, object>
+            {
+                { "objectid", objectId },
+                { "g1vala" + key, _rechazar }
+            };
+
+            Object objTmp = new { attributes };
+
+            string registro = JsonSerializer.Serialize(objTmp);
+
+            var values = new Dictionary<string, string>
+            {
+                ["updates"] = $"[{registro}]",
+                ["token"] = token,
+                ["f"] = "json"
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            string Url = $"{layerUrl}/applyEdits";
+            var response = await _httpClient.PostAsync(Url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\":true");
+            return res;
+        }
     }
 }
