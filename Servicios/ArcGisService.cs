@@ -285,7 +285,6 @@ namespace Transelec.Servicios
         {
             List<ArcGisAttachmentViewModel> result = [];
             string token = await GetTokenAsync();
-            string keywords = "Desconocido"; // Valor por defecto si no existe
 
             foreach (int objectId in objectIds)
             {
@@ -296,7 +295,7 @@ namespace Transelec.Servicios
                 using JsonDocument docAttachments = JsonDocument.Parse(jsonAttachments);
                 JsonElement rootAttachments = docAttachments.RootElement;
 
-                List<string> imageUrls = new();
+                List<string> imageUrls = [];
                 if (rootAttachments.TryGetProperty("attachmentGroups", out JsonElement attachmentGroups))
                 {
                     foreach (JsonElement group in attachmentGroups.EnumerateArray())
@@ -306,9 +305,15 @@ namespace Transelec.Servicios
                             foreach (JsonElement attachment in attachmentInfos.EnumerateArray())
                             {
                                 int attachmentId = attachment.GetProperty("id").GetInt32();
-                                keywords = attachment.GetProperty("keywords").ToString();
+                                string keywords = attachment.GetProperty("keywords").ToString();
                                 string imageUrl = $"{featureServerUrl}/{objectId}/attachments/{attachmentId}?token={token}";
-                                imageUrls.Add(imageUrl);
+
+                                result.Add(new ArcGisAttachmentViewModel
+                                {
+                                    ObjectId = objectId,
+                                    ImageUrl = imageUrl,
+                                    Keyword = keywords
+                                });
                             }
                         }
                     }
@@ -331,15 +336,15 @@ namespace Transelec.Servicios
                 //}
 
                 // Guardar la información en la lista de resultados
-                foreach (var url in imageUrls)
-                {
-                    result.Add(new ArcGisAttachmentViewModel
-                    {
-                        ObjectId = objectId,
-                        ImageUrl = url,
-                        Keyword = keywords
-                    });
-                }
+                //foreach (var url in imageUrls)
+                //{
+                //    result.Add(new ArcGisAttachmentViewModel
+                //    {
+                //        ObjectId = objectId,
+                //        ImageUrl = url,
+                //        Keyword = keywords
+                //    });
+                //}
             }
 
             return result;
