@@ -318,36 +318,40 @@ namespace Transelec.Servicios
                         }
                     }
                 }
-
-                //// Obtener Keyword desde los atributos del objeto
-                //string queryFeatureUrl = $"{featureServerUrl}/query?where=OBJECTID={objectId}&outFields=Keyword&f=json";
-                //string jsonFeature = await client.GetStringAsync(queryFeatureUrl);
-                //using JsonDocument docFeature = JsonDocument.Parse(jsonFeature);
-                //JsonElement rootFeature = docFeature.RootElement;
-
-                //if (rootFeature.TryGetProperty("features", out JsonElement features) && features.GetArrayLength() > 0)
-                //{
-                //    JsonElement firstFeature = features[0];
-                //    if (firstFeature.TryGetProperty("attributes", out JsonElement attributes) &&
-                //        attributes.TryGetProperty("Keyword", out JsonElement keywordElement))
-                //    {
-                //        keyword = keywordElement.GetString();
-                //    }
-                //}
-
-                // Guardar la información en la lista de resultados
-                //foreach (var url in imageUrls)
-                //{
-                //    result.Add(new ArcGisAttachmentViewModel
-                //    {
-                //        ObjectId = objectId,
-                //        ImageUrl = url,
-                //        Keyword = keywords
-                //    });
-                //}
             }
 
             return result;
+        }
+
+
+        public async Task<bool> AceptarActividad(string layerUrl, int objectId, string key)
+        {
+            string token = await GetTokenAsync();
+
+            var attributes = new Dictionary<string, object>
+            {
+                { "objectid", objectId },
+                { "g1vala" + key, _aceptar }
+            };
+
+            Object objTmp = new { attributes };
+
+            string registro = JsonSerializer.Serialize(objTmp);
+
+            var values = new Dictionary<string, string>
+            {
+                ["updates"] = $"[{registro}]",
+                ["token"] = token,
+                ["f"] = "json"
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            string Url = $"{layerUrl}/applyEdits";
+            var response = await _httpClient.PostAsync(Url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\":true");
+            return res;
         }
     }
 }

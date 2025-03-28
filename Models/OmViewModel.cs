@@ -2,10 +2,12 @@
 {
     public class OmViewModel
     {
-        public string? Om { get; set; }
-
         public int ObjectId { get; set; }
 
+        public string? Om { get; set; }
+
         public string? Observacion { get; set; }
+
+        public string? Key { get; set; }
     }
 }

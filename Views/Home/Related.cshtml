@@ -7,7 +7,7 @@
     var imagenesPorObjeto = ViewBag.Imagenes as List<ArcGisAttachmentViewModel>;
     var Oms = ViewBag.Features as List<Dictionary<string, object>>;
 
-    int i = 0, x = 0, y = 0, z = 0;
+    int i = 0, x = 0, y = 0, z = 0, objectId = 0;
     string? fase = "", observacion = "", equipoFormat = "";
 }
 
@@ -136,6 +136,11 @@
                                                                                 string keyObs = $"observac{numero}";
                                                                                 string keyImg = $"nota_img{numero}";
 
+                                                                                if (record.TryGetValue("objectid", out object? valorObj))
+                                                                                {
+                                                                                    objectId = Convert.ToInt32(valorObj);
+                                                                                }
+
                                                                                 if (record.TryGetValue(keyObs, out object? valorObs))
                                                                                 {
                                                                                     observacion = valorObs as string;
@@ -168,12 +173,11 @@
                                                                                             </div>
                                                                                             <div class="form-group mt-4">
                                                                                                 <button id="btn-guardar-inspection-torre" type="button" class="btn btn-secondary"><em class="ion ion-ios-close-circle"></em>&nbsp; No aceptar</button>
-                                                                                                <button id="btn-guardar-inspection-torre" type="button" class="btn btn-success"><em class="ion ion-ios-checkmark-circle"></em>&nbsp; Aceptar</button>
+                                                                                                <button id="btn-guardar-aceptar-actividad" onclick="aceptarActividad('@objectId', '@numero')" type="button" class="btn btn-success"><em class="ion ion-ios-checkmark-circle"></em>&nbsp; Aceptar</button>
                                                                                             </div>
                                                                                         </form>
                                                                                     </div>
                                                                                 </div>
-                                                                                @* <p>Key: @v.Key - Alias: @alias - Value: @v.Value</p> *@
                                                                             }
                                                                         }
                                                                     }
@@ -292,7 +296,7 @@
     </div>
 </div>
 
-@* 
+
 <div class="card">
     <div class="card-body">
 
@@ -328,7 +332,7 @@
         }
         
     </div>
-</div> *@
+</div> 
 
 @section Scripts {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">

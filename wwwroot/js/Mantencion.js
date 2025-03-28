@@ -73,6 +73,34 @@ async function rechazarOm() {
     }
 };
 
+async function aceptarActividad(Objectid, Key) {
+
+
+    let payload = { Objectid, Key };
+
+    console.log("payload::: ", payload);
+
+    let response = await fetch("/Home/AceptarActividad", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    console.log("response:::", response);
+
+    if (response.ok) {
+        let data = await response.json();
+        toastr.success(data.mensaje);
+        setTimeout(function () {
+            location.reload();
+        }, 1000)
+    } else {
+        const errorData = await response.json();
+        console.log("errorData:::", errorData);
+        toastr.error(errorData.mensaje);
+    }
+};
+
 
 
 
