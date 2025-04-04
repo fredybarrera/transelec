@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Win32;
-using System;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Transelec.Models;
 
 namespace Transelec.Servicios
 {
-    public class ArcGisService(HttpClient httpClient, IConfiguration configuration)
+    public class ArcGisServiceOLD(HttpClient httpClient, IConfiguration configuration)
     {
         private readonly HttpClient _httpClient = httpClient;
         private readonly IConfiguration _configuration = configuration;
@@ -16,41 +13,27 @@ namespace Transelec.Servicios
         private const int _rechazar = 2;
         private const int _estadoEnviarSap = 2;
 
-        private readonly string _VORNR = "0010";
-        private readonly string _GRUND = "TRFI";
-        private readonly string _PLANT = "0060";
 
-        private string? _cachedToken;
-        private DateTime _tokenExpiration = DateTime.MinValue;
-
-        private async Task<string> GetTokenAsync()
+        public async Task<string> GetTokenAsync()
         {
-            if (_cachedToken != null && DateTime.UtcNow < _tokenExpiration)
-            {
-                return _cachedToken; // Retornar token en caché si aún es válido
-            }
-
             var url = _configuration["ArcGIS:UrlToken"];
+
             var values = new Dictionary<string, string>
             {
                 { "username", _configuration["ArcGIS:Username"]! },
                 { "password", _configuration["ArcGIS:Password"]! },
                 { "client", "referer" },
                 { "referer", "https://sigtranselec.maps.arcgis.com" },
-                { "expiration", "60" }, // Expira en 60 minutos
+                { "expiration", "60" },
                 { "f", "json" }
             };
 
             var content = new FormUrlEncodedContent(values);
             var response = await _httpClient.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
-
             var responseString = await response.Content.ReadAsStringAsync();
-            using var jsonDoc = JsonDocument.Parse(responseString);
-            _cachedToken = jsonDoc.RootElement.GetProperty("token").GetString();
-            _tokenExpiration = DateTime.UtcNow.AddMinutes(55); // Guardar con margen antes de expirar
 
-            return _cachedToken!;
+            using var jsonDoc = JsonDocument.Parse(responseString);
+            return jsonDoc.RootElement.GetProperty("token").GetString()!;
         }
 
         public async Task<List<Dictionary<string, object>>> GetLayerFeatureValuesAsync(
@@ -399,127 +382,8 @@ namespace Transelec.Servicios
             return res;
         }
 
-        public async Task<RespuestaHttp> EnviarSap(string orde_m_id, string organizac, string start_time_field, string end_time_field)
-        {
-            var resultado = new RespuestaHttp();
 
-            try
-            {
-                if (string.IsNullOrWhiteSpace(orde_m_id) || string.IsNullOrWhiteSpace(organizac))
-                    throw new ArgumentException("Parámetros requeridos no pueden ser nulos o vacíos.");
-
-                var startTime = ConvertUnixMillisecondsToDateTime(start_time_field);
-                var endTime = ConvertUnixMillisecondsToDateTime(end_time_field);
-
-                var url = _configuration["SAP:ApiSAP"];
-                var username = _configuration["SAP:User"];
-                var password = _configuration["SAP:Password"];
-
-                var authToken = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
-
-                using var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", authToken);
-
-                var requestData = new
-                {
-                    VORNR = _VORNR,
-                    AUFNR = orde_m_id,
-                    BUDAT = DateTime.Now.ToString("yyyyMMdd"),
-                    ARBPL = organizac,
-                    ISDD = startTime.ToString("yyyyMMdd"),
-                    ISDZ = startTime.ToString("HHmmss"),
-                    IEDD = endTime.ToString("yyyyMMdd"),
-                    IEDZ = endTime.ToString("HHmmss"),
-                    GRUND = _GRUND,
-                    PLANT = _PLANT
-                };
-
-                requestMessage.Content = new StringContent(JsonSerializer.Serialize(requestData), Encoding.UTF8, "application/json");
-
-                using var response = await _httpClient.SendAsync(requestMessage);
-                response.EnsureSuccessStatusCode();
-
-                var responseText = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseText);
-
-                resultado.Success = true;
-                resultado.Message = "La operación fue exitosa. SAP respondió correctamente.";
-            }
-            catch (HttpRequestException ex)
-            {
-                resultado.Success = false;
-                resultado.Message = $"Error al enviar a SAP: {ex.Message}";
-            }
-            catch (Exception ex)
-            {
-                resultado.Success = false;
-                resultado.Message = $"Error inesperado: {ex.Message}";
-            }
-
-            return resultado;
-        }
-
-
-        private static DateTime ConvertUnixMillisecondsToDateTime(string timestamp)
-        {
-            if (long.TryParse(timestamp, out long milliseconds))
-            {
-                var dateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(milliseconds);
-                return dateTimeOffset.DateTime;
-            }
-            throw new ArgumentException("El valor no es un timestamp válido.");
-        }
-
-        //public async Task<bool> EnviarSapOLD2(string orde_m_id, string organizac, string start_time_field, string end_time_field)
-        //{
-        //    try
-        //    {
-        //        var url = _configuration["SAP:ApiSAP"];
-        //        var username = _configuration["SAP:User"];
-        //        var password = _configuration["SAP:Password"];
-
-        //        // Autenticación Basic Auth
-        //        var authToken = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
-        //        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
-
-        //        // Crear JSON dinámico
-        //        var requestData = new
-        //        {
-        //            "VORNR": _VORNR,
-        //            "AUFNR": orde_m_id,
-        //            "BUDAT": DateTime.Now,
-        //            "ARBPL": organizac,
-        //            "ISDD": start_time_field,
-        //            "ISDZ": start_time_field,
-        //            "IEDD": end_time_field,
-        //            "IEDZ": end_time_field,
-        //            "GRUND": _GRUND,
-        //            "PLANT": _PLANT
-        //        };
-
-        //        var jsonContent = new StringContent(JsonSerializer.Serialize(requestData), Encoding.UTF8, "application/json");
-
-        //        // Enviar petición
-        //        using var response = await _httpClient.PostAsync(url, jsonContent);
-        //        response.EnsureSuccessStatusCode();
-
-        //        var responseText = await response.Content.ReadAsStringAsync();
-        //        Console.WriteLine(responseText);
-        //        return true;
-        //    }
-        //    catch (HttpRequestException ex)
-        //    {
-        //        Console.WriteLine($"Error en la solicitud HTTP: {ex.Message}");
-        //        return false;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error inesperado: {ex.Message}");
-        //        return false;
-        //    }
-        //}
-
-        public async Task<bool> EnviarSapOLD(string orde_m_id, string organizac, string start_time_field, string end_time_field)
+        public async Task<bool> EnviarSapOLD(string aufnr, string gewrk, string gstpr, string gltpr)
         {
             try
             {
@@ -542,6 +406,48 @@ namespace Transelec.Servicios
             catch (Exception ex)
             { 
                 Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> EnviarSap(string aufnr, string gewrk, string gstpr, string gltpr)
+        {
+            try
+            {
+                var url = _configuration["SAP:ApiSAP"];
+                var username = _configuration["SAP:User"];
+                var password = _configuration["SAP:Password"];
+
+                // Autenticación Basic Auth
+                var authToken = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
+
+                // Crear JSON dinámico
+                var requestData = new
+                {
+                    aufnr,
+                    gewrk,
+                    gstpr,
+                    gltpr
+                };
+                var jsonContent = new StringContent(JsonSerializer.Serialize(requestData), Encoding.UTF8, "application/json");
+
+                // Enviar petición
+                using var response = await _httpClient.PostAsync(url, jsonContent);
+                response.EnsureSuccessStatusCode();
+
+                var responseText = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseText);
+                return true;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error en la solicitud HTTP: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error inesperado: {ex.Message}");
                 return false;
             }
         }

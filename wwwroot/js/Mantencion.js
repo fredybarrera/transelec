@@ -9,10 +9,16 @@
 });
 
 
-async function aprobarOm(Objectid) {
+async function aprobarOm(Objectid, Om, Organizac, Start, End) {
 
     
-    let payload = { Objectid: Objectid };
+    let payload = {
+        Objectid,
+        Om,
+        Organizac,
+        Start,
+        End
+    };
 
     console.log("payload::: ", payload);
 

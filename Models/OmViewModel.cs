@@ -9,5 +9,11 @@
         public string? Observacion { get; set; }
 
         public string? Key { get; set; }
+
+        public string? Organizac { get; set; }
+        
+        public string? Start { get; set; }
+     
+        public string? End { get; set; }
     }
 }

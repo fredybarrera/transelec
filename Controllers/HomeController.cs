@@ -29,7 +29,7 @@ namespace Transelec.Controllers
             return View(featureValues);
         }
 
-        public async Task<IActionResult> Related(string om,string objectId)
+        public async Task<IActionResult> Related(string om,string objectId, string organizac, string start, string end)
         {
             string layerUrl = $"{_layerUrl}/queryRelatedRecords";
             string relationshipId = "8";
@@ -38,6 +38,9 @@ namespace Transelec.Controllers
 
             ViewBag.Om = om;
             ViewBag.Objectid = objectId;
+            ViewBag.Organizac = organizac;
+            ViewBag.Start = start;
+            ViewBag.End = end;
 
             string where = $"orde_m_id={om}";
             string layerUrlQuery = $"{_layerUrl}/query";
@@ -90,9 +93,26 @@ namespace Transelec.Controllers
                 return BadRequest("No se recibió el parámetro OM.");
             }
 
+            //Apruebo la OM
             var result = await _arcGisService.AprobarOm(_layerUrl, data.ObjectId);
 
-            return result ? Ok(new { mensaje = $"Actualización existosa" }) : BadRequest(new { mensaje = $"Error en la actualización" });
+
+
+            //Envío a SAP
+            var resultSap = await _arcGisService.EnviarSap(data.Om, data.Organizac, data.Start, data.End);
+
+
+            if (!result)
+            {
+                return BadRequest(new { mensaje = $"Error al aprobar la OM" });
+            }
+
+            if (!resultSap.Success)
+            {
+                return BadRequest(new { mensaje = resultSap.Message });
+            }
+
+            return Ok(new { mensaje = $"Actualización existosa" });
         }
 
         [HttpPost]
@@ -156,7 +176,9 @@ namespace Transelec.Controllers
                 "jefe_act",
                 "aceptar",
                 "estado",
-                "obs_activ"
+                "obs_activ",
+                "start_time_field",
+                "end_time_field"
             ];
         }
 
