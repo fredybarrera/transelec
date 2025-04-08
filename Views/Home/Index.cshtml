@@ -33,7 +33,7 @@
                             <td>@item["objectid"]</td>
                          @*    <td>@item["uniquerowid"]</td>
                             <td>@item["globalid"]</td> *@
-                            <td>@item["om_text"]</td>
+                            <td>@item["orde_m_id"]</td>
                             <td>@item["actividad"]</td>
                             <td>@item["instalac"]</td>
                             <td>@item["responsable"]</td>
@@ -45,11 +45,8 @@
                                 <a 
                                     class="btn btn-primary btn-sm" 
                                     target="_blank" 
-                                    asp-action="Related" 
-                                    asp-route-om="@item["om_text"]" 
-                                    asp-route-organizac="@item["organizac"]" 
-                                    asp-route-start="@item["start_time_field"]" 
-                                    asp-route-end="@item["end_time_field"]" 
+                                    asp-action="Related"
+                                    asp-route-om="@item["orde_m_id"]"
                                     asp-route-objectId="@item["objectid"]">
                                         <em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver datos</a>
                                 <a class="btn btn-primary btn-sm" target="_blank" asp-action="GetOm" asp-route-om="@item["om_text"]" asp-route-objectid="@item["objectid"]"><em class="ion ion-ios-arrow-dropright-circle"></em>&nbsp; Ver OM</a>

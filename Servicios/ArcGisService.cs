@@ -167,8 +167,6 @@ namespace Transelec.Servicios
             return relatedValues;
         }
 
-
-
         public async Task<bool> AprobarOm(string layerUrl, int objectId)
         {
             string token = await GetTokenAsync();

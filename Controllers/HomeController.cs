@@ -18,40 +18,43 @@ namespace Transelec.Controllers
         private readonly ILogger<HomeController> _logger = logger;
         private readonly ArcGisService _arcGisService = arcGisService;
         private readonly IConfiguration _configuration = configuration;
-        private readonly string _layerUrl = configuration["ArcGIS:Layer0"]!;
-        private readonly string _layerUrl1 = configuration["ArcGIS:Layer1"]!;
+        private readonly string _layerUrlOM = configuration["ArcGIS:Layer0"]!;
+        private readonly string _layerUrlTranReac = configuration["ArcGIS:Layer1"]!;
+        private readonly string _tableIdRelationTranReac = "7";
 
         public async Task<IActionResult> Index()
         {
-            string layerUrl = $"{_layerUrl}/query";
+            string layerUrl = $"{_layerUrlOM}/query";
             List<String> outFields = GetOutFields0();
             var featureValues = await _arcGisService.GetLayerFeatureValuesAsync(layerUrl, outFields, "1=1");
             return View(featureValues);
         }
 
-        public async Task<IActionResult> Related(string om,string objectId, string organizac, string start, string end)
+        public async Task<IActionResult> Related(string om, string objectId)
         {
-            string layerUrl = $"{_layerUrl}/queryRelatedRecords";
-            string relationshipId = "8";
-            var featureValues = await _arcGisService.GetRelatedRecordsAsync(layerUrl, objectId, relationshipId);
-            List<int> objectIds = GetObjectIds(featureValues);
-
-            ViewBag.Om = om;
-            ViewBag.Objectid = objectId;
-            ViewBag.Organizac = organizac;
-            ViewBag.Start = start;
-            ViewBag.End = end;
-
+            //Obtengo el registro de la OM
             string where = $"orde_m_id={om}";
-            string layerUrlQuery = $"{_layerUrl}/query";
+            string layerUrlQuery = $"{_layerUrlOM}/query";
             List<String> outFields = GetOutFields0();
             var features = await _arcGisService.GetLayerFeatureValuesAsync(layerUrlQuery, outFields, where);
             ViewBag.Features = features;
 
-            List<ArcGisAttachmentViewModel> attachments = await _arcGisService.ObtenerDatosAdjuntos(_layerUrl1, objectIds);
+            ViewBag.Om = om;
+            ViewBag.Objectid = objectId;
+            ViewBag.Organizac = GetKeyValue(features, "organizac");
+            ViewBag.Start = GetKeyValue(features, "start_time_field");
+            ViewBag.End = GetKeyValue(features, "end_time_field");
+
+            //Obtengo los datos relacionados
+            string layerUrl = $"{_layerUrlOM}/queryRelatedRecords";
+            string relationshipId = _tableIdRelationTranReac;
+            var featureValues = await _arcGisService.GetRelatedRecordsAsync(layerUrl, objectId, relationshipId);
+            List<int> objectIds = GetObjectIds(featureValues);
+
+            List<ArcGisAttachmentViewModel> attachments = await _arcGisService.ObtenerDatosAdjuntos(_layerUrlTranReac, objectIds);
             ViewBag.Imagenes = attachments; // Pasamos la info a la vista
 
-            Dictionary<string, string> fieldAliases = await _arcGisService.ObtenerAliasCampos(_layerUrl1);
+            Dictionary<string, string> fieldAliases = await _arcGisService.ObtenerAliasCampos(_layerUrlTranReac);
             ViewBag.AliasCampos = fieldAliases;
 
             return View(featureValues);
@@ -68,6 +71,23 @@ namespace Transelec.Controllers
             return objectIds;
         }
 
+        public string GetKeyValue(List<Dictionary<string, object>> featureValues, string key)
+        {
+            foreach (var dic in featureValues)
+            {
+                var claveCoincidente = dic.Keys
+                    .FirstOrDefault(k => k.Equals(key, StringComparison.OrdinalIgnoreCase));
+
+                if (claveCoincidente != null)
+                {
+                    var valor = dic[claveCoincidente];
+                    return valor?.ToString() ?? string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -77,7 +97,7 @@ namespace Transelec.Controllers
         {
             ViewBag.Om = om;
             ViewBag.Objectid = objectid;
-            string layerUrl = $"{_layerUrl}/query";
+            string layerUrl = $"{_layerUrlOM}/query";
             string where = $"orde_m_id={om}";
             List<String> outFields = GetOutFields0();
             var featureValues = await _arcGisService.GetLayerFeatureValuesAsync(layerUrl, outFields, where);
@@ -94,7 +114,7 @@ namespace Transelec.Controllers
             }
 
             //Apruebo la OM
-            var result = await _arcGisService.AprobarOm(_layerUrl, data.ObjectId);
+            var result = await _arcGisService.AprobarOm(_layerUrlOM, data.ObjectId);
 
 
 
@@ -124,7 +144,7 @@ namespace Transelec.Controllers
                 return BadRequest("No se recibió el parámetro OM.");
             }
 
-            var result = await _arcGisService.RechazarOm(_layerUrl, data.ObjectId, data.Observacion!);
+            var result = await _arcGisService.RechazarOm(_layerUrlOM, data.ObjectId, data.Observacion!);
 
             return result ? Ok(new { mensaje = $"Actualización existosa" }) : BadRequest(new { mensaje = $"Error en la actualización" });
         }
@@ -138,7 +158,7 @@ namespace Transelec.Controllers
                 return BadRequest(new { mensaje = "No se recibió el parámetro ObjectId." });
             }
 
-            var result = await _arcGisService.AceptarActividad(_layerUrl1, data.ObjectId, data.Key!);
+            var result = await _arcGisService.AceptarActividad(_layerUrlTranReac, data.ObjectId, data.Key!);
 
             return result ? Ok(new { mensaje = $"Actualización existosa" }) : BadRequest(new { mensaje = $"Error en la actualización" });
         }
@@ -152,7 +172,7 @@ namespace Transelec.Controllers
                 return BadRequest(new { mensaje = "No se recibió el parámetro ObjectId." });
             }
 
-            var result = await _arcGisService.RechazarActividad(_layerUrl1, data.ObjectId, data.Key!);
+            var result = await _arcGisService.RechazarActividad(_layerUrlTranReac, data.ObjectId, data.Key!);
 
             return result ? Ok(new { mensaje = $"Actualización existosa" }) : BadRequest(new { mensaje = $"Error en la actualización" });
         }
@@ -178,7 +198,8 @@ namespace Transelec.Controllers
                 "estado",
                 "obs_activ",
                 "start_time_field",
-                "end_time_field"
+                "end_time_field",
+                "orde_m_id"
             ];
         }
 
