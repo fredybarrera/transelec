@@ -20,7 +20,7 @@ namespace Transelec.Controllers
         private readonly IConfiguration _configuration = configuration;
         private readonly string _layerUrlOM = configuration["ArcGIS:Layer0"]!;
         private readonly string _layerUrlTranReac = configuration["ArcGIS:Layer1"]!;
-        private readonly string _tableIdRelationTranReac = "7";
+        private readonly string _tableIdRelationTranReac = "3";
 
         public async Task<IActionResult> Index()
         {

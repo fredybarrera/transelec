@@ -312,47 +312,6 @@
     </div>
 </div>
 
-@* 
-
-<div class="card">
-    <div class="card-body">
-
-        @if (Model != null && Model.Any())
-        {
-            <div class="table-responsive">
-                <table id="recordsTable" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            @foreach (var key in Model.First().Keys)
-                            {
-                                <th>@key</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var record in Model)
-                        {
-                            <tr>
-                                @foreach (var value in record.Values)
-                                {
-                                    <td>@(value ?? "N/A")</td>
-                                }
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        }
-        else
-        {
-            <p>No se encontraron registros relacionados.</p>
-        }
-        
-    </div>
-</div> 
- *@
-
-
 @section Scripts {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
