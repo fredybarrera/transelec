@@ -228,7 +228,7 @@ namespace Transelec.Servicios
             string Url = $"{layerUrl}/applyEdits";
             var response = await _httpClient.PostAsync(Url, content);
             var responseString = await response.Content.ReadAsStringAsync();
-            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\" : true");
+            var res = response.IsSuccessStatusCode && responseString.Contains("\"success\":true");
             return res;
         }
 
