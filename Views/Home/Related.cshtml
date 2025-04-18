@@ -9,6 +9,7 @@
 
     int i = 0, x = 0, y = 0, z = 0, objectId = 0;
     string? fase = "", observacion = "", equipoFormat = "", criticidad = "";
+    bool tiene = false;
 }
 
 <div class="card mt-3">
@@ -60,6 +61,7 @@
                                 {
                                     string? equipo = valorEquipo as string;
                                     equipoFormat = equipo?.Replace(" ", "_").ToLower();
+                                    tiene = false;
                                     if (equipo != null)
                                     {
                                         if (record.TryGetValue("fase_id01", out object? valorFase))
@@ -91,6 +93,7 @@
                                                                                 if (v.Value != null && v.Value.ToString() == "2")
                                                                                 {
                                                                                     y++;
+                                                                                    tiene = true;
                                                                                     string alias = aliasCampos != null && aliasCampos.ContainsKey(v.Key) ? aliasCampos[v.Key] : "No encontrado";
 
                                                                                     <button 
@@ -112,6 +115,7 @@
                                                                     }
                                                                 }
                                                             }
+                                                            
                                                         </div>
                                                     </nav>
                                                     <div class="tab-content" id="nav-tabContent">
@@ -199,6 +203,12 @@
                                                             }
                                                         }
                                                     </div>
+                                                    @if (!tiene)
+                                                    {
+                                                        <div class="text-center">
+                                                            <span class="alert alert-secondary mt-3" style="display: inline-flex;font-weight: 600;font-size: 14px;float: left;">Sin anomalía reportada en equipo.</span>
+                                                        </div>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

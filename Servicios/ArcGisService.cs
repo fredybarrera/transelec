@@ -14,7 +14,7 @@ namespace Transelec.Servicios
         private readonly IConfiguration _configuration = configuration;
         private const int _aceptar = 1;
         private const int _rechazar = 2;
-        private const int _estadoEnviarSap = 2;
+        private const int _estadoEnviarSap = 4;
 
         private readonly string _VORNR = "0010";
         private readonly string _GRUND = "TRFI";
